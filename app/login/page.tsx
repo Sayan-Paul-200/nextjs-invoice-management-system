@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { signIn } from '../utils/auth';
 
 
 const LoginPage = () => {
@@ -19,7 +20,14 @@ const LoginPage = () => {
           </CardHeader>
 
           <CardContent>
-            <form className='flex flex-col gap-y-4'>
+            <form
+              action={async () => {
+                // form submission logic here
+                "use server"
+                await signIn()
+              }}
+              className='flex flex-col gap-y-4'
+             >
                 <div className="flex flex-col gap-y-2">
                     <Label>Email</Label>
                     <Input placeholder='example@domain.com' />
